@@ -1,0 +1,24 @@
+#ignore SWMM output files
+*.rpt
+*.out
+*.ini
+*.PNG
+*.svg
+
+#ignore MF workspace
+/VER_MF_workspace
+
+#ignore Figuras 
+/Figuras
+
+#ignore otras versiones
+/SWMM_VER_model/otras_versiones
+
+/Notebooks/.ipynb_checkpoints
+/_ipynb_checkpoints
+*.ipynb_checkpoints
+
+/GIS/Shapes/MODFLOW_grid_flopy.dbf
+/GIS/Shapes/MODFLOW_grid_flopy.prj
+/GIS/Shapes/MODFLOW_grid_flopy.shp
+/GIS/Shapes/MODFLOW_grid_flopy.shx

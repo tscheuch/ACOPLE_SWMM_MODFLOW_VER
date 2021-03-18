@@ -1,0 +1,257 @@
+[TITLE]
+;;Project Title/Notes
+
+[OPTIONS]
+;;Option             Value
+FLOW_UNITS           CMS
+INFILTRATION         GREEN_AMPT
+FLOW_ROUTING         KINWAVE
+LINK_OFFSETS         DEPTH
+MIN_SLOPE            0
+ALLOW_PONDING        NO
+SKIP_STEADY_STATE    NO
+
+START_DATE           08/01/2018
+START_TIME           00:00:00
+REPORT_START_DATE    08/01/2018
+REPORT_START_TIME    00:00:00
+END_DATE             12/01/2018
+END_TIME             00:05:00
+SWEEP_START          01/01
+SWEEP_END            12/31
+DRY_DAYS             0
+REPORT_STEP          00:10:00
+WET_STEP             00:05:00
+DRY_STEP             01:00:00
+ROUTING_STEP         0:05:00 
+RULE_STEP            00:00:00
+
+INERTIAL_DAMPING     PARTIAL
+NORMAL_FLOW_LIMITED  BOTH
+FORCE_MAIN_EQUATION  H-W
+VARIABLE_STEP        0.75
+LENGTHENING_STEP     0
+MIN_SURFAREA         1.167
+MAX_TRIALS           8
+HEAD_TOLERANCE       0.0015
+SYS_FLOW_TOL         5
+LAT_FLOW_TOL         5
+MINIMUM_STEP         0.5
+THREADS              1
+
+[EVAPORATION]
+;;Data Source    Parameters
+;;-------------- ----------------
+CONSTANT         0.5
+DRY_ONLY         NO
+
+[RAINGAGES]
+;;Name           Format    Interval SCF      Source    
+;;-------------- --------- ------ ------ ----------
+RG1              VOLUME    24:00    1.0      TIMESERIES 2meses/diaria   
+
+[SUBCATCHMENTS]
+;;Name           Rain Gage        Outlet           Area     %Imperv  Width    %Slope   CurbLen  SnowPack        
+;;-------------- ---------------- ---------------- -------- -------- -------- -------- -------- ----------------
+S1               RG1              SU1              1        75       100      0.5      0                        
+S2               RG1              SU1              0.1      100      1        10       0                        
+
+[SUBAREAS]
+;;Subcatchment   N-Imperv   N-Perv     S-Imperv   S-Perv     PctZero    RouteTo    PctRouted 
+;;-------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+S1               0.01       0.1        1.58       6.35       50         OUTLET    
+S2               0.01       0.1        0.05       0          100        OUTLET    
+
+[INFILTRATION]
+;;Subcatchment   Suction    Ksat       IMD       
+;;-------------- ---------- ---------- ----------
+S1               166.8      6.5        0.25      
+S2               3.5        0.5        0.25      
+
+[OUTFALLS]
+;;Name           Elevation  Type       Stage Data       Gated    Route To        
+;;-------------- ---------- ---------- ---------------- -------- ----------------
+O1               0          FREE                        NO                       
+
+[STORAGE]
+;;Name           Elev.    MaxDepth   InitDepth  Shape      Curve Name/Params            N/A      Fevap    Psi      Ksat     IMD     
+;;-------------- -------- ---------- ----------- ---------- ---------------------------- -------- --------          -------- --------
+SU1              0       3          0          FUNCTIONAL 0         0         1000     0        0        273      1        0.25    
+
+[CONDUITS]
+;;Name           From Node        To Node          Length     Roughness  InOffset   OutOffset  InitFlow   MaxFlow   
+;;-------------- ---------------- ---------------- ---------- ---------- ---------- ---------- ---------- ----------
+C1               SU1              O1               50         0.01       2          0          0          0         
+
+[XSECTIONS]
+;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
+;;-------------- ------------ ---------------- ---------- ---------- ---------- ---------- ----------
+C1               CIRCULAR     1                0          0          0          1                    
+
+[TIMESERIES]
+;;Name           Date       Time       Value     
+;;-------------- ---------- ---------- ----------
+MES/DIARIA       8/1/2018   0:00       0         
+MES/DIARIA       8/2/2018   0:00       11.5      
+MES/DIARIA       8/3/2018   0:00       6.5       
+MES/DIARIA       8/4/2018   0:00       8         
+MES/DIARIA       8/5/2018   0:00       75.5      
+MES/DIARIA       8/6/2018   0:00       33.5      
+MES/DIARIA       8/7/2018   0:00       3.5       
+MES/DIARIA       8/8/2018   0:00       8         
+MES/DIARIA       8/9/2018   0:00       6.5       
+MES/DIARIA       8/10/2018  0:00       0.5       
+MES/DIARIA       8/11/2018  0:00       3         
+MES/DIARIA       8/12/2018  0:00       13.5      
+MES/DIARIA       8/13/2018  0:00       0         
+MES/DIARIA       8/14/2018  0:00       3.5       
+MES/DIARIA       8/15/2018  0:00       1.5       
+MES/DIARIA       8/16/2018  0:00       5.5       
+MES/DIARIA       8/17/2018  0:00       0.5       
+MES/DIARIA       8/18/2018  0:00       0         
+MES/DIARIA       8/19/2018  0:00       0.5       
+MES/DIARIA       8/20/2018  0:00       0.5       
+MES/DIARIA       8/21/2018  0:00       6         
+MES/DIARIA       8/22/2018  0:00       36        
+MES/DIARIA       8/23/2018  0:00       8.5       
+MES/DIARIA       8/24/2018  0:00       3.5       
+MES/DIARIA       8/25/2018  0:00       0         
+MES/DIARIA       8/26/2018  0:00       0.5       
+MES/DIARIA       8/27/2018  0:00       2.5       
+MES/DIARIA       8/28/2018  0:00       26.5      
+MES/DIARIA       8/29/2018  0:00       0.5       
+MES/DIARIA       8/30/2018  0:00       0         
+MES/DIARIA       8/31/2018  0:00       0         
+;
+5mm              8/1/2018   0:00       5         
+5mm              8/2/2018   0:00       5         
+5mm              8/3/2018   0:00       5         
+5mm              8/4/2018   0:00       5         
+5mm              8/5/2018   0:00       5         
+5mm              8/6/2018   0:00       5         
+5mm              8/7/2018   0:00       5         
+5mm              8/8/2018   0:00       5         
+5mm              8/9/2018   0:00       5         
+5mm              8/10/2018  0:00       5         
+5mm              8/11/2018  0:00       5         
+5mm              8/12/2018  0:00       5         
+5mm              8/13/2018  0:00       5         
+5mm              8/14/2018  0:00       5         
+5mm              8/15/2018  0:00       5         
+5mm              8/16/2018  0:00       5         
+5mm              8/17/2018  0:00       5         
+5mm              8/18/2018  0:00       5         
+5mm              8/19/2018  0:00       5         
+5mm              8/20/2018  0:00       5         
+5mm              8/21/2018  0:00       5         
+5mm              8/22/2018  0:00       5         
+5mm              8/23/2018  0:00       5         
+5mm              8/24/2018  0:00       5         
+5mm              8/25/2018  0:00       5         
+5mm              8/26/2018  0:00       5         
+5mm              8/27/2018  0:00       5         
+5mm              8/28/2018  0:00       5         
+5mm              8/29/2018  0:00       5         
+5mm              8/30/2018  0:00       5         
+;
+2meses/diaria    8/1/2018   0:00       0         
+2meses/diaria    8/2/2018   0:00       10        
+2meses/diaria    8/3/2018   0:00       6.5       
+2meses/diaria    8/4/2018   0:00       8         
+2meses/diaria    8/5/2018   0:00       75.5      
+2meses/diaria    8/6/2018   0:00       33.5      
+2meses/diaria    8/7/2018   0:00       3.5       
+2meses/diaria    8/8/2018   0:00       8         
+2meses/diaria    8/9/2018   0:00       6.5       
+2meses/diaria    8/10/2018  0:00       0.5       
+2meses/diaria    8/11/2018  0:00       3         
+2meses/diaria    8/12/2018  0:00       13.5      
+2meses/diaria    8/13/2018  0:00       0         
+2meses/diaria    8/14/2018  0:00       3.5       
+2meses/diaria    8/15/2018  0:00       1.5       
+2meses/diaria    8/16/2018  0:00       5.5       
+2meses/diaria    8/17/2018  0:00       0.5       
+2meses/diaria    8/18/2018  0:00       0         
+2meses/diaria    8/19/2018  0:00       0.5       
+2meses/diaria    8/20/2018  0:00       0.5       
+2meses/diaria    8/21/2018  0:00       6         
+2meses/diaria    8/22/2018  0:00       40        
+2meses/diaria    8/23/2018  0:00       35        
+2meses/diaria    8/24/2018  0:00       20        
+2meses/diaria    8/25/2018  0:00       0         
+2meses/diaria    8/26/2018  0:00       0.5       
+2meses/diaria    8/27/2018  0:00       2.5       
+2meses/diaria    8/28/2018  0:00       26.5      
+2meses/diaria    8/29/2018  0:00       0.5       
+2meses/diaria    8/30/2018  0:00       0         
+2meses/diaria    8/31/2018  0:00       0         
+2meses/diaria    9/1/2018   0:00       0         
+2meses/diaria    9/2/2018   0:00       0         
+2meses/diaria    9/3/2018   0:00       0         
+2meses/diaria    9/4/2018   0:00       0         
+2meses/diaria    9/5/2018   0:00       0         
+2meses/diaria    9/6/2018   0:00       0         
+2meses/diaria    9/7/2018   0:00       0         
+2meses/diaria    9/8/2018   0:00       0         
+2meses/diaria    9/9/2018   0:00       0         
+2meses/diaria    9/10/2018  0:00       0         
+2meses/diaria    9/11/2018  0:00       0         
+2meses/diaria    9/12/2018  0:00       0         
+2meses/diaria    9/13/2018  0:00       0         
+2meses/diaria    9/14/2018  0:00       0         
+2meses/diaria    9/15/2018  0:00       0         
+2meses/diaria    9/16/2018  0:00       0         
+2meses/diaria    9/17/2018  0:00       5         
+2meses/diaria    9/18/2018  0:00       10        
+2meses/diaria    9/19/2018  0:00       8         
+2meses/diaria    9/20/2018  0:00       0         
+2meses/diaria    9/21/2018  0:00       0         
+2meses/diaria    9/22/2018  0:00       0         
+2meses/diaria    9/23/2018  0:00       0         
+2meses/diaria    9/24/2018  0:00       0         
+2meses/diaria    9/25/2018  0:00       0         
+2meses/diaria    9/26/2018  0:00       0         
+2meses/diaria    9/27/2018  0:00       0         
+2meses/diaria    9/28/2018  0:00       0         
+2meses/diaria    9/29/2018  0:00       0         
+2meses/diaria    9/30/2018  0:00       0         
+
+[REPORT]
+;;Reporting Options
+SUBCATCHMENTS ALL
+NODES ALL
+LINKS ALL
+
+[TAGS]
+
+[MAP]
+DIMENSIONS 0.000 0.000 10000.000 10000.000
+Units      None
+
+[COORDINATES]
+;;Node           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+O1               1316.547           5194.245          
+SU1              1316.547           5928.058          
+
+[VERTICES]
+;;Link           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+
+[Polygons]
+;;Subcatchment   X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+S1               -2076.915          6937.573          
+S1               -556.178           6937.573          
+S1               -556.178           8227.895          
+S1               -2076.915          8227.895          
+S2               556.178            7237.112          
+S2               2076.915           7237.112          
+S2               2076.915           7928.356          
+S2               556.178            7928.356          
+
+[SYMBOLS]
+;;Gage           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+RG1              266.187            9122.302          
+
